@@ -1,0 +1,19 @@
+{
+  "appId": "com.solodreams.MartecBuddy",
+  "appName": "Martec Buddy",
+  "webDir": "www",
+  "backgroundColor": "#f5f7f8",
+  "ios": {
+    "contentInset": "never",
+    "backgroundColor": "#f5f7f8",
+    "preferredContentMode": "mobile"
+  },
+  "android": {
+    "backgroundColor": "#f5f7f8",
+    "allowMixedContent": false
+  },
+  "server": {
+    "androidScheme": "https",
+    "iosScheme": "https"
+  }
+}

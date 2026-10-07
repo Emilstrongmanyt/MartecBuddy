@@ -1,0 +1,20 @@
+{
+  "name": "Martec Buddy",
+  "short_name": "Martec Buddy",
+  "description": "Formelopslag til elektroteknik, varmelære og motorlære, plus log(p)-h for vand.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f5f7f8",
+  "theme_color": "#076d66",
+  "lang": "da",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

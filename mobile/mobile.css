@@ -1,0 +1,348 @@
+/* Phone shell for Martec Buddy. The formula engine and colors stay in the built page. */
+:root {
+  --tab-clearance: calc(76px + env(safe-area-inset-bottom));
+  --keyboard-inset: 0px;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  background: var(--bg);
+}
+
+body.martec-app {
+  padding-top: env(safe-area-inset-top);
+  touch-action: manipulation;
+}
+
+body.martec-app main {
+  max-width: 880px;
+  padding: 0 max(16px, env(safe-area-inset-right)) var(--tab-clearance) max(16px, env(safe-area-inset-left));
+}
+
+body.martec-app input,
+body.martec-app select,
+body.martec-app textarea {
+  font-size: 16px;
+}
+
+body.martec-app button,
+body.martec-app summary,
+body.martec-app .given-option,
+body.martec-app #filter-options label,
+body.martec-app .ph-toggles label {
+  min-height: 44px;
+}
+
+body.martec-app .topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 -16px;
+  padding: 10px 16px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+body.martec-app .header-actions {
+  margin-left: auto;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+@media (max-width: 520px) {
+  body.martec-app .header-actions {
+    width: 100%;
+    margin-left: 0;
+    justify-content: flex-start;
+  }
+}
+
+body.martec-app .brand {
+  font-size: 18px;
+  min-width: 0;
+}
+
+body.martec-app .header-actions button,
+body.martec-app .feedback summary {
+  min-height: 44px;
+  padding: 8px 12px;
+  font-size: 13px;
+}
+
+body.martec-app .hero {
+  padding: 18px 0 8px;
+}
+
+body.martec-app .hero h1 {
+  font-size: 30px;
+  letter-spacing: -0.04em;
+  margin-bottom: 8px;
+}
+
+body.martec-app .hero-copy {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+body.martec-app .discovery {
+  padding: 16px;
+  border-radius: 18px;
+}
+
+body.martec-app .search-row {
+  flex-direction: column;
+}
+
+body.martec-app .search-row input,
+body.martec-app #saved-toggle {
+  width: 100%;
+  min-height: 48px;
+}
+
+body.martec-app .discovery-results,
+body.martec-app .cards,
+body.martec-app .controls,
+body.martec-app .ph-grid,
+body.martec-app .ph-fields {
+  grid-template-columns: 1fr;
+}
+
+body.martec-app .topic-shortcuts {
+  display: flex;
+  grid-template-columns: none;
+  gap: 10px;
+  margin: 14px 0 18px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 4px;
+}
+
+body.martec-app .topic-shortcuts button {
+  flex: 0 0 min(78vw, 280px);
+  scroll-snap-align: start;
+  min-height: 72px;
+  padding: 14px 16px;
+}
+
+body.martec-app .topic-shortcuts strong {
+  font-size: 16px;
+}
+
+body.martec-app .topic-shortcuts span {
+  font-size: 13px;
+}
+
+body.martec-app .workspace {
+  padding: 18px 16px 20px;
+  border-radius: 18px;
+}
+
+body.martec-app .workspace,
+body.martec-app #ph {
+  scroll-margin-top: 128px;
+}
+
+body.martec-app .workspace-title {
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+body.martec-app .workspace-title > div {
+  flex: 1 1 200px;
+  min-width: 0;
+}
+
+body.martec-app #reset {
+  flex: 0 0 auto;
+}
+
+body.martec-app .workspace-title h2 {
+  font-size: 22px;
+}
+
+body.martec-app .links button {
+  min-height: 44px;
+  padding: 10px 14px;
+  font-size: 14px;
+}
+
+body.martec-app #seek,
+body.martec-app #seek-list [role="option"] {
+  min-height: 44px;
+}
+
+body.martec-app #seek-list [role="option"] {
+  display: flex;
+  align-items: center;
+  padding: 12px 14px;
+}
+
+body.martec-app .card-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+body.martec-app .card-actions button {
+  min-height: 44px;
+}
+
+body.martec-app .math-line {
+  -webkit-overflow-scrolling: touch;
+}
+
+body.martec-app .result-header {
+  align-items: flex-start;
+}
+
+body.martec-app .view-switch {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 0;
+  padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
+  background: var(--panel);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -10px 30px #1b374014;
+}
+
+body.martec-app .view-switch button {
+  min-height: 52px;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  padding: 6px 8px;
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+body.martec-app .tab-glyph {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+body.martec-app .tab-glyph.mark {
+  width: auto;
+  height: auto;
+  font: italic 20px/1 Georgia, serif;
+}
+
+body.martec-app .ph-stage {
+  display: flex;
+  flex-direction: column;
+  order: -1;
+}
+
+body.martec-app .ph-chart {
+  order: 1;
+  height: min(440px, 52vh);
+  min-height: 260px;
+  border-radius: 18px;
+}
+
+body.martec-app #ph-caption { order: 2; }
+body.martec-app #ph-readout { order: 3; }
+body.martec-app .ph-toolbar { order: 4; }
+
+body.martec-app .ph-zoom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+body.martec-app .ph-zoom button,
+body.martec-app .ph-side #ph-reset {
+  min-height: 44px;
+}
+
+body.martec-app .ph-intro {
+  padding: 16px 0 8px;
+}
+
+body.martec-app .ph-intro h1 {
+  font-size: 30px;
+}
+
+body.martec-app .action-status {
+  bottom: calc(var(--tab-clearance) + 8px + var(--keyboard-inset));
+  width: max-content;
+  text-align: center;
+}
+
+body.martec-app footer {
+  padding-bottom: 12px;
+}
+
+body.martec-app #mathcad-dialog,
+body.martec-app [data-mathcad],
+body.martec-app [data-mathcad-options] {
+  display: none !important;
+}
+
+html.keyboard-open body.martec-app .view-switch {
+  transform: translateY(120%);
+}
+
+html.keyboard-open body.martec-app main {
+  padding-bottom: calc(24px + var(--keyboard-inset));
+}
+
+@media (min-width: 700px) {
+  body.martec-app .search-row {
+    flex-direction: row;
+  }
+
+  body.martec-app #saved-toggle {
+    width: auto;
+  }
+
+  body.martec-app .ph-fields {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 900px) {
+  body.martec-app .cards:not(.single),
+  body.martec-app .discovery-results {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  body.martec-app .ph-grid {
+    grid-template-columns: minmax(260px, 340px) minmax(0, 1fr);
+  }
+
+  body.martec-app .ph-stage {
+    order: 0;
+  }
+
+  body.martec-app .topic-shortcuts button {
+    flex-basis: 240px;
+  }
+}
+
+@media print {
+  body.martec-app {
+    padding-top: 0;
+  }
+
+  body.martec-app main {
+    padding: 0;
+  }
+
+  body.martec-app .view-switch {
+    display: none !important;
+  }
+}
