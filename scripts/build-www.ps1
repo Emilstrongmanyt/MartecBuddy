@@ -33,7 +33,9 @@ $tempIn = Join-Path ([System.IO.Path]::GetTempPath()) "martec-buddy-db-in.json"
 $tempOut = Join-Path ([System.IO.Path]::GetTempPath()) "martec-buddy-db-out.json"
 [System.IO.File]::WriteAllText($tempIn, $html.Substring($jsonStart, $jsonEnd - $jsonStart), $utf8)
 $strip = Join-Path $root "tools\StripMathcad\StripMathcad.csproj"
-& dotnet run --project $strip -c Release -- $tempIn $tempOut
+$elTek = Join-Path $root "catalogs\el-maalbroer.json"
+if (-not (Test-Path -LiteralPath $elTek)) { throw "Mangler $elTek" }
+& dotnet run --project $strip -c Release -- $tempIn $tempOut $elTek
 if ($LASTEXITCODE -ne 0) { throw "Mathcad-data kunne ikke fjernes." }
 $json = [System.IO.File]::ReadAllText($tempOut)
 Remove-Item -LiteralPath $tempIn, $tempOut -ErrorAction SilentlyContinue
@@ -73,13 +75,21 @@ $html = $html.Replace($copyOld, $copyNew)
 $html = $html.Replace(
     "</style></head>",
     "</style><meta name=`"theme-color`" content=`"#f5f7f8`" media=`"(prefers-color-scheme: light)`"><meta name=`"theme-color`" content=`"#101b22`" media=`"(prefers-color-scheme: dark)`"><meta name=`"apple-mobile-web-app-capable`" content=`"yes`"><meta name=`"mobile-web-app-capable`" content=`"yes`"><meta name=`"apple-mobile-web-app-status-bar-style`" content=`"default`"><meta name=`"apple-mobile-web-app-title`" content=`"Martec Buddy`"><link rel=`"manifest`" href=`"manifest.webmanifest`"><link rel=`"stylesheet`" href=`"mobile.css`"></head>")
+$sourceLink = 'source&&db.source_base_url?`<a href="${esc(db.source_base_url+source.file.split(''/'').map(encodeURIComponent).join(''/''))}"'
+$sourceLinkNew = 'source&&db.source_base_url&&source.id!==''ELMB''?`<a href="${esc(db.source_base_url+source.file.split(''/'').map(encodeURIComponent).join(''/''))}"'
+if (-not $html.Contains($sourceLink)) { throw "Kildelinket blev ikke fundet." }
+$html = $html.Replace($sourceLink, $sourceLinkNew)
+$sourceHint = '${link||`<small>Find filen i projektets ${esc(source?.file||''sources/'')}.</small>`}'
+$sourceHintNew = '${link||(source&&source.id===''ELMB''?'''' : `<small>Find filen i projektets ${esc(source?.file||''sources/'')}.</small>`)}'
+if (-not $html.Contains($sourceHint)) { throw "Kildehenvisningen blev ikke fundet." }
+$html = $html.Replace($sourceHint, $sourceHintNew)
 $html = $html.Replace("</body>", "<script src=`"mobile.js`" defer></script></body>")
 
 $copyMathcad = "Kopi" + [char]0x00E9 + "r til Mathcad"
 foreach ($needle in @($copyMathcad, "Mathcad-valg", 'id="mathcad-dialog"', "data-mathcad=", "Prime XML is compiled by Python", '"mathcad":')) {
     if ($html.Contains($needle)) { throw "Bygget side indeholder stadig: $needle" }
 }
-foreach ($needle in @("Martec Buddy", 'id="global-search"', 'id="view-formulas"', 'id="view-ph"', 'id="ph-svg"', 'id="saved-toggle"', "mobile.css", "mobile.js")) {
+foreach ($needle in @("Martec Buddy", 'id="global-search"', 'id="view-formulas"', 'id="view-diagrams"', 'id="diagram-list"', 'id="gas"', 'id="motor"', 'id="gas-canvas"', 'id="motor-pv"', 'id="ph-svg"', 'id="saved-toggle"', "ELMB01", "mobile.css", "mobile.js")) {
     if (-not $html.Contains($needle)) { throw "Bygget side mangler: $needle" }
 }
 

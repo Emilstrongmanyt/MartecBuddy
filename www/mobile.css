@@ -143,7 +143,10 @@ body.martec-app .workspace {
 }
 
 body.martec-app .workspace,
-body.martec-app #ph {
+body.martec-app #ph,
+body.martec-app #gas,
+body.martec-app #motor,
+body.martec-app #diagram-list {
   scroll-margin-top: 128px;
 }
 
@@ -253,6 +256,36 @@ body.martec-app .ph-chart {
   border-radius: 18px;
 }
 
+body.martec-app .tool-back,
+body.martec-app .tool-card,
+body.martec-app .gas-pumps button,
+body.martec-app #gas-reset,
+body.martec-app #motor-reset,
+body.martec-app #motor-otto,
+body.martec-app #motor-diesel {
+  min-height: 44px;
+}
+
+body.martec-app #gas-wall {
+  min-height: 0;
+  touch-action: none;
+}
+
+body.martec-app .gas-stage {
+  height: min(360px, 46vh);
+  min-height: 240px;
+  touch-action: none;
+}
+
+body.martec-app .motor-charts {
+  grid-template-columns: 1fr;
+}
+
+body.martec-app .motor-chart {
+  height: min(280px, 42vh);
+  min-height: 220px;
+}
+
 body.martec-app #ph-caption { order: 2; }
 body.martec-app #ph-readout { order: 3; }
 body.martec-app .ph-toolbar { order: 4; }
@@ -326,6 +359,10 @@ html.keyboard-open body.martec-app main {
 
   body.martec-app .ph-stage {
     order: 0;
+  }
+
+  body.martec-app .motor-charts {
+    grid-template-columns: 1fr 1fr;
   }
 
   body.martec-app .topic-shortcuts button {

@@ -1,0 +1,476 @@
+{
+  "scope_replace": {
+    "old": "AC-reaktans, impedans og øvrig AC er fortsat udækket; ikke en fuld BM4-pensumdækning.",
+    "new": "Telefonmålebroens reaktanser er med. Impedans og øvrig AC er fortsat udækket; ikke en fuld BM4-pensumdækning. Målebroer og kompensationsmålinger fra MARTEC-kompendiet, afsnit 6 (s. 81–93), ligger under Målebroer."
+  },
+  "group": {
+    "id": "bridges",
+    "label": "Målebroer",
+    "description": "Wheatstone, Thomson, kompensation og telefonmålebro"
+  },
+  "quantities": {
+    "mb_Rx": "Ukendt modstand Rx [Ω]",
+    "mb_RN": "Normalmodstand RN [Ω]",
+    "mb_R1": "Brogren R1 [Ω]",
+    "mb_R2": "Brogren R2 [Ω]",
+    "mb_R3": "Brogren R3 [Ω]",
+    "mb_R4": "Brogren R4 [Ω]",
+    "mb_l1": "Måletrådsdel l1 [samme enhed som l2]",
+    "mb_l2": "Måletrådsdel l2 [samme enhed som l1]",
+    "mb_EN": "Normal-EMK EN [V]",
+    "mb_Ik": "Kompensationsstrøm Ik [A]",
+    "mb_Rp": "Potentiometermodstand Rp [Ω]",
+    "mb_Ex": "Ukendt EMK Ex [V]",
+    "mb_I": "Strøm i måletråden I [A]",
+    "mb_Rtr": "Måletrådens modstand Rtråd [Ω]",
+    "mb_Ltr": "Måletrådens længde Ltråd [m]",
+    "mb_l": "Aflæst længde l [m]",
+    "mb_LN": "Normalinduktans LN [H]",
+    "mb_Lx": "Ukendt induktans Lx [H]",
+    "mb_Rxs": "Ukendt spolegren Rxs [Ω]",
+    "mb_RNs": "Normalspolens modstand RNs [Ω]",
+    "mb_Rs": "Spolens modstand R [Ω]",
+    "mb_CN": "Normalkapacitans CN [F]",
+    "mb_Cx": "Ukendt kapacitans Cx [F]",
+    "mb_f": "Frekvens f [Hz]",
+    "mb_XL": "Induktiv reaktans XL [Ω]",
+    "mb_XC": "Kapacitiv reaktans XC [Ω]",
+    "mb_L": "Induktans L [H]",
+    "mb_C": "Kapacitans C [F]",
+    "mb_g": "Antal grene g [1]",
+    "mb_k": "Antal knuder k [1]",
+    "mb_m": "Uafhængige kredse m [1]",
+    "mb_Req": "Erstatningsmodstand ved balance [Ω]"
+  },
+  "situations": {
+    "mb_wheatstone": "Wheatstonebro i balance, fig. 6.2.2",
+    "mb_wire": "Trådmålebro i balance, fig. 6.2.3",
+    "mb_thomson": "Thomsonbro i balance, fig. 6.2.5",
+    "mb_comp_std": "Kompensation med spændingsnormal, fig. 6.2.7",
+    "mb_comp_wire": "Kompensation med måletråd, fig. 6.2.8",
+    "mb_phone_l": "Telefonmålebro for induktans, fig. 6.3.1",
+    "mb_phone_c": "Telefonmålebro for kapacitans, fig. 6.3.3",
+    "mb_square": "Firkantet bro med batteri og galvanometer, fig. 6.2.1"
+  },
+  "given_guide": {
+    "id": "bridges",
+    "body": {
+      "quantities": {
+        "mb_RN": { "label": "Normalmodstand RN [Ω]", "help": "Den kendte modstand i broen. Ved Wheatstone står den i c–b på fig. 6.2.2." },
+        "mb_R1": { "label": "Brogren R1 [Ω]", "help": "Forholdets tæller ved Wheatstone og ved L-broen. Bytter du R1 og R2, vender brøken." },
+        "mb_R2": { "label": "Brogren R2 [Ω]", "help": "Forholdets nævner ved Wheatstone og ved L-broen. Ved C-broen står R2 i tælleren." },
+        "mb_R3": { "label": "Brogren R3 [Ω]", "help": "Nævneren i Thomsonbroen. R3 og R4 er den ene dobbeltdekade." },
+        "mb_R4": { "label": "Brogren R4 [Ω]", "help": "Den fjerde gren i den firkantede bro." },
+        "mb_l1": { "label": "Måletrådsdel l1", "help": "Den del af tråden, der træder i stedet for R1. Samme enhed som l2." },
+        "mb_l2": { "label": "Måletrådsdel l2", "help": "Den del af tråden, der træder i stedet for R2. Vælg RN, så balancen ligger nær midten." },
+        "mb_EN": { "label": "Normal-EMK EN [V]", "help": "Den kendte elektromotoriske kraft fra spændingsnormalen." },
+        "mb_Ik": { "label": "Kompensationsstrøm Ik [A]", "help": "Strømmen, når galvanometret viser nul med omskifteren på EN." },
+        "mb_Rp": { "label": "Potentiometermodstand Rp [Ω]", "help": "Den indstillede modstand, når galvanometret viser nul med omskifteren på Ex." },
+        "mb_I": { "label": "Strøm i måletråden I [A]", "help": "Strømmen gennem måletråden. 20,0 mA skrives som 0,020 A." },
+        "mb_Rtr": { "label": "Måletrådens modstand Rtråd [Ω]", "help": "Hele trådens modstand, ikke kun stykket frem til udtaget." },
+        "mb_Ltr": { "label": "Måletrådens længde Ltråd [m]", "help": "Hele trådens længde i samme enhed som den aflæste længde." },
+        "mb_l": { "label": "Aflæst længde l [m]", "help": "Længden fra trådens nulpunkt til balancepunktet. 25 mm er 0,025 m." },
+        "mb_LN": { "label": "Normalinduktans LN [H]", "help": "Den kendte spole. 40,0 mH er 0,040 H. Forholdet gælder også direkte i mH." },
+        "mb_Rxs": { "label": "Ukendt spolegren Rxs [Ω]", "help": "Modstanden i den ukendte spolegren ved telefonmålebroen." },
+        "mb_RNs": { "label": "Normalspolens modstand RNs [Ω]", "help": "Modstanden i normalspolen. Den trækkes fra, når spolens egen R skal findes." },
+        "mb_CN": { "label": "Normalkapacitans CN [F]", "help": "Den kendte kondensator. Brøken er omvendt af L-broens." },
+        "mb_f": { "label": "Frekvens f [Hz]", "help": "Forsyningens frekvens. Telefonmålebroen bruger ofte omkring 800 Hz." },
+        "mb_L": { "label": "Induktans L [H]", "help": "Spolens induktans, når reaktansen XL skal findes." },
+        "mb_C": { "label": "Kapacitans C [F]", "help": "Kondensatorens kapacitans, når reaktansen XC skal findes." },
+        "mb_g": { "label": "Antal grene g [1]", "help": "Antal strømveje mellem knuderne. Broen med batteri og G har 6." },
+        "mb_k": { "label": "Antal knuder k [1]", "help": "Antal knudepunkter. Den samme bro har 4." }
+      },
+      "groups": [
+        { "label": "Broens modstande", "keys": ["mb_RN", "mb_R1", "mb_R2", "mb_R3", "mb_R4", "mb_Rxs", "mb_RNs"] },
+        { "label": "Måletråd", "keys": ["mb_l1", "mb_l2", "mb_l", "mb_Ltr", "mb_Rtr", "mb_I"] },
+        { "label": "Kompensation", "keys": ["mb_EN", "mb_Ik", "mb_Rp"] },
+        { "label": "Spole, kondensator og frekvens", "keys": ["mb_LN", "mb_CN", "mb_L", "mb_C", "mb_f"] },
+        { "label": "Knuder og grene", "keys": ["mb_k", "mb_g"] }
+      ]
+    }
+  },
+  "source": {
+    "id": "ELMB",
+    "file": "catalogs/el-maalbroer.json",
+    "original_file": "MARTEC-kompendium, afsnit 6 Målebroer og kompensationsmålinger (s. 81–93)",
+    "title": "Cheatsheet – Målebroer og kompensationsmålinger",
+    "unit": "side",
+    "pages": 93
+  },
+  "note": {
+    "title": "Hvilken målebro skal jeg bruge?",
+    "text": "Kilde: MARTEC-kompendium, afsnit 6 (s. 81–93). Ca. 50 mΩ–5 MΩ: Wheatstonebro, Rx = RN · R1/R2. Samme område med måletråd: Rx = RN · l1/l2. Få Ω ned til µΩ: Thomsonbro (Kelvinbro), Rx = RN · R1/R3. EMK uden at belaste kilden: Ex = EN · Rp/RN. EMK fra termoelement: Ex = l · I · Rtråd/Ltråd. Induktans: Lx = LN · R1/R2. Kapacitans: Cx = CN · R2/R1. Ved balance er produktet af to modstående grene lig produktet af de to andre. Brøken gælder kun for den placering, figuren viser. C-broen har R2/R1, L-broen har R1/R2. Erstatningsmodstanden ved balance er (R1+R2) parallelt med (R3+R4), og den er ikke Rx.",
+    "source_locations": ["ELMB:81-93"]
+  },
+  "formulas": [
+    {
+      "latex": "R_{x}=R_{N}\\cdot\\frac{R_{1}}{R_{2}}",
+      "search": "R_x = R_N * R_1 / R_2",
+      "parts": [{ "t": "Rₓ = Rₙ · " }, { "n": "R₁", "d": "R₂" }]
+    },
+    {
+      "latex": "R_{x}=R_{N}\\cdot\\frac{l_{1}}{l_{2}}",
+      "search": "R_x = R_N * l_1 / l_2",
+      "parts": [{ "t": "Rₓ = Rₙ · " }, { "n": "l₁", "d": "l₂" }]
+    },
+    {
+      "latex": "R_{x}=R_{N}\\cdot\\frac{R_{1}}{R_{3}}",
+      "search": "R_x = R_N * R_1 / R_3",
+      "parts": [{ "t": "Rₓ = Rₙ · " }, { "n": "R₁", "d": "R₃" }]
+    },
+    {
+      "latex": "I_{k}=\\frac{E_{N}}{R_{N}}",
+      "search": "I_k = E_N / R_N",
+      "parts": [{ "t": "Iₖ = " }, { "n": "Eₙ", "d": "Rₙ" }]
+    },
+    {
+      "latex": "E_{x}=I_{k}\\cdot R_{p}",
+      "search": "E_x = I_k * R_p",
+      "parts": [{ "t": "Eₓ = Iₖ · Rₚ" }]
+    },
+    {
+      "latex": "E_{x}=E_{N}\\cdot\\frac{R_{p}}{R_{N}}",
+      "search": "E_x = E_N * R_p / R_N",
+      "parts": [{ "t": "Eₓ = Eₙ · " }, { "n": "Rₚ", "d": "Rₙ" }]
+    },
+    {
+      "latex": "E_{x}=l\\cdot\\frac{I\\cdot R_{\\mathrm{tråd}}}{L_{\\mathrm{tråd}}}",
+      "search": "E_x = l * I * R_trad / L_trad",
+      "parts": [{ "t": "Eₓ = l · " }, { "n": "I · Rtråd", "d": "Ltråd" }]
+    },
+    {
+      "latex": "L_{x}=L_{N}\\cdot\\frac{R_{1}}{R_{2}}",
+      "search": "L_x = L_N * R_1 / R_2",
+      "parts": [{ "t": "Lₓ = Lₙ · " }, { "n": "R₁", "d": "R₂" }]
+    },
+    {
+      "latex": "R=R_{xs}\\cdot\\frac{R_{2}}{R_{1}}-R_{Ns}",
+      "search": "R = R_xs * R_2 / R_1 - R_Ns",
+      "parts": [{ "t": "R = Rₓₛ · " }, { "n": "R₂", "d": "R₁" }, { "t": " − Rₙₛ" }]
+    },
+    {
+      "latex": "C_{x}=C_{N}\\cdot\\frac{R_{2}}{R_{1}}",
+      "search": "C_x = C_N * R_2 / R_1",
+      "parts": [{ "t": "Cₓ = Cₙ · " }, { "n": "R₂", "d": "R₁" }]
+    },
+    {
+      "latex": "X_{L}=2\\pi f L",
+      "search": "X_L = 2*pi*f*L",
+      "parts": [{ "t": "Xₗ = 2πfL" }]
+    },
+    {
+      "latex": "X_{C}=\\frac{1}{2\\pi f C}",
+      "search": "X_C = 1/(2*pi*f*C)",
+      "parts": [{ "t": "X꜀ = " }, { "n": "1", "d": "2πfC" }]
+    },
+    {
+      "latex": "R_{4}=\\frac{R_{2}\\cdot R_{3}}{R_{1}}",
+      "search": "R_4 = R_2 * R_3 / R_1",
+      "parts": [{ "t": "R₄ = " }, { "n": "R₂ · R₃", "d": "R₁" }]
+    },
+    {
+      "latex": "m=g-k+1",
+      "search": "m = g - k + 1",
+      "parts": [{ "t": "m = g − k + 1" }]
+    },
+    {
+      "latex": "R_{\\mathrm{erst}}=\\frac{(R_{1}+R_{2})(R_{3}+R_{4})}{R_{1}+R_{2}+R_{3}+R_{4}}",
+      "search": "R_erst = (R_1+R_2)*(R_3+R_4)/(R_1+R_2+R_3+R_4)",
+      "parts": [{ "t": "Rerst = " }, { "n": "(R₁+R₂)(R₃+R₄)", "d": "R₁+R₂+R₃+R₄" }]
+    }
+  ],
+  "entries": [
+    {
+      "id": "ELMB01",
+      "seek": "Ukendt modstand Rx [Ω], Wheatstonebro",
+      "given": "RN [Ω], R1 [Ω], R2 [Ω]",
+      "condition": "Balance, IG = 0. Fig. 6.2.2: Rx i a–c, RN i c–b, R1 i a–d og R2 i d–b. Ca. 50 mΩ–5 MΩ. Mest nøjagtig når RN ≈ Rx.",
+      "latex": "R_{x}=R_{N}\\cdot\\frac{R_{1}}{R_{2}}",
+      "steps": "Ved balance er Uac = Uad og Ucb = Udb, og strømmene parvis lige: I1 = I2 og I3 = I4. Generelt er R1/R2 = R3/R4, altså R1·R4 = R2·R3. Huskereglen er, at produktet af to modstående grene er lig produktet af de to andre.",
+      "conversion": "Brug samme enhed i tæller og nævner. 1 kΩ = 1000 Ω.",
+      "pitfall": "Bytter du R1 og R2, vender brøken. Brøken gælder kun for den placering, fig. 6.2.2 viser. De to diagonaler, batteri og galvanometer, må ikke være forbundet, hvor de krydser.",
+      "example": "Regneeksempel: RN = 100 Ω, R1 = 200 Ω og R2 = 100 Ω. Rx = 100 · 200/100 = 200 Ω.",
+      "example_check": { "expr": "100*200/100", "expected": 200 },
+      "source_locations": ["ELMB:81-93"],
+      "lookup": {
+        "group": "bridges",
+        "seek_key": "mb_Rx",
+        "given_sets": [["mb_RN", "mb_R1", "mb_R2"]],
+        "situations": ["mb_wheatstone"]
+      },
+      "explanation": "Wheatstonebroen måler en ukendt modstand i det normale område, cirka 50 mΩ til 5 MΩ. Ved balance er galvanometerstrømmen nul. Kilde: MARTEC-kompendium, afsnit 6, fig. 6.2.1 og 6.2.2."
+    },
+    {
+      "id": "ELMB02",
+      "seek": "Ukendt modstand Rx [Ω], trådmålebro",
+      "given": "RN [Ω], l1, l2",
+      "condition": "Balance på måletråd, fig. 6.2.3. R1 og R2 er erstattet af tråden. l1 og l2 skal være i samme enhed.",
+      "latex": "R_{x}=R_{N}\\cdot\\frac{l_{1}}{l_{2}}",
+      "steps": "Udtaget deler tråden i l1 og l2. Trådens resistivitet og tværsnit forkortes ud, fordi de er ens i begge dele.",
+      "conversion": "l1 og l2 kan begge stå i cm eller begge i mm. Forholdet er det samme.",
+      "pitfall": "Vælg RN, så balancen ligger tæt på trådens midte. En aflæsning helt ude i den ene ende bliver unøjagtig.",
+      "example": "Eks. 6.1: RN = 50,0 Ω, l1 = 46 cm og l2 = 54 cm. Rx = 50,0 · 46/54 = 42,6 Ω.",
+      "example_check": { "expr": "50*46/54", "expected": 42.592592592592595 },
+      "source_locations": ["ELMB:81-93"],
+      "lookup": {
+        "group": "bridges",
+        "seek_key": "mb_Rx",
+        "given_sets": [["mb_RN", "mb_l1", "mb_l2"]],
+        "situations": ["mb_wire"]
+      },
+      "explanation": "Trådmålebroen bruges i samme område som Wheatstonebroen, når forholdsarmene er en måletråd. Kilde: MARTEC-kompendium, afsnit 6, fig. 6.2.3 og eks. 6.1."
+    },
+    {
+      "id": "ELMB03",
+      "seek": "Ukendt modstand Rx [Ω], Thomsonbro",
+      "given": "RN [Ω], R1 [Ω], R3 [Ω]",
+      "condition": "Thomsonbro (Kelvinbro) i balance, fig. 6.2.5. Til meget små modstande, fra få Ω ned til µΩ. R1 = R2 og R3 = R4, og de indstilles samtidig. R1 til R4 er meget større end Rx og RN. RN har samme størrelsesorden som Rx, og de to forbindes med korte, kraftige ledninger.",
+      "latex": "R_{x}=R_{N}\\cdot\\frac{R_{1}}{R_{3}}",
+      "steps": "Udledning med Kirchhoffs 2. lov. Kreds I: Ix·Rx = (I1 − I2)·R1. Kreds II: Ix·RN = (I1 − I2)·R3. Divider kreds I med kreds II, så forkortes strømmene ud.",
+      "conversion": "1 mΩ = 0,001 Ω. 1 µΩ = 10⁻⁶ Ω.",
+      "pitfall": "Lednings- og kontaktmodstand betyder her næsten ingenting. Det er grunden til at bruge Thomsonbroen frem for Wheatstonebroen. Forudsætningen er, at RN og Rx forbindes med korte, kraftige ledninger, og at dekaderne er meget større end de to.",
+      "example": "Med RN = 1 mΩ, R1 = 100 Ω og R3 = 100 Ω er Rx = 1 mΩ. Det er en illustration af forholdet, ikke et nummereret eksempel i kompendiet.",
+      "example_check": { "expr": "0.001*100/100", "expected": 0.001 },
+      "source_locations": ["ELMB:81-93"],
+      "lookup": {
+        "group": "bridges",
+        "seek_key": "mb_Rx",
+        "given_sets": [["mb_RN", "mb_R1", "mb_R3"]],
+        "situations": ["mb_thomson"]
+      },
+      "explanation": "Thomsonbroen måler meget små modstande, fordi lednings- og kontaktmodstand ikke flytter resultatet, når betingelserne er opfyldt. Kilde: MARTEC-kompendium, afsnit 6, fig. 6.2.5."
+    },
+    {
+      "id": "ELMB04",
+      "seek": "Kompensationsstrøm Ik [A]",
+      "given": "EN [V], RN [Ω]",
+      "condition": "Kompensation med spændingsnormal, fig. 6.2.7, første balance. Omskifteren står på EN, og RS justeres, til galvanometret viser 0.",
+      "latex": "I_{k}=\\frac{E_{N}}{R_{N}}",
+      "steps": "Først findes den strøm, der hører til normalen. Derefter skiftes omskifteren til Ex, og Rp justeres til ny balance. Ex findes af ELMB05 eller direkte af ELMB06.",
+      "conversion": "Ik i ampere, når EN er i volt og RN i ohm.",
+      "pitfall": "Ved balance trækkes der ingen strøm fra kilden. RS er den modstand, der justeres ved normalen. Ex bruger Rp fra anden balance, ikke RS.",
+      "example": "",
+      "source_locations": ["ELMB:81-93"],
+      "lookup": {
+        "group": "bridges",
+        "seek_key": "mb_Ik",
+        "given_sets": [["mb_EN", "mb_RN"]],
+        "situations": ["mb_comp_std"]
+      },
+      "explanation": "Ik er strømmen i kompensationskredsen, når galvanometret er i balance mod spændingsnormalen. Kilde: MARTEC-kompendium, afsnit 6, fig. 6.2.7."
+    },
+    {
+      "id": "ELMB05",
+      "seek": "Ukendt EMK Ex [V] fra Ik og Rp",
+      "given": "Ik [A], Rp [Ω]",
+      "condition": "Anden balance i fig. 6.2.7. Omskifteren står på Ex, og Rp er justeret, til galvanometret viser 0. Ik er uændret fra balancen mod EN.",
+      "latex": "E_{x}=I_{k}\\cdot R_{p}",
+      "steps": "Ex = Ik · Rp. Kender du EN og RN i stedet for Ik, så brug ELMB06.",
+      "conversion": "1 mV = 0,001 V.",
+      "pitfall": "Metoden belaster ikke kilden ved balance. Et voltmeter ville trække strøm og måle for lavt på en svag kilde.",
+      "example": "",
+      "source_locations": ["ELMB:81-93"],
+      "lookup": {
+        "group": "bridges",
+        "seek_key": "mb_Ex",
+        "given_sets": [["mb_Ik", "mb_Rp"]],
+        "situations": ["mb_comp_std"]
+      },
+      "explanation": "Når kompensationsstrømmen kendes, er den ukendte elektromotoriske kraft produktet af den strøm og den indstillede Rp. Kilde: MARTEC-kompendium, afsnit 6, fig. 6.2.7."
+    },
+    {
+      "id": "ELMB06",
+      "seek": "Ukendt EMK Ex [V] fra spændingsnormal",
+      "given": "EN [V], RN [Ω], Rp [Ω]",
+      "condition": "Begge balancer i fig. 6.2.7 er taget. Samme Ik indgår, så den kan forkortes ud.",
+      "latex": "E_{x}=E_{N}\\cdot\\frac{R_{p}}{R_{N}}",
+      "steps": "Ik = EN/RN og Ex = Ik·Rp giver Ex = EN·Rp/RN.",
+      "conversion": "EN og Ex i samme spændingsenhed, når Rp og RN er i samme modstandsenhed.",
+      "pitfall": "Rp er modstanden ved balancen mod Ex. RN hører til balancen mod normalen.",
+      "example": "",
+      "source_locations": ["ELMB:81-93"],
+      "lookup": {
+        "group": "bridges",
+        "seek_key": "mb_Ex",
+        "given_sets": [["mb_EN", "mb_Rp", "mb_RN"]],
+        "situations": ["mb_comp_std"]
+      },
+      "explanation": "Den ukendte EMK findes uden at belaste kilden. Metoden bruges til et normalelement og andre svage kilder. Kilde: MARTEC-kompendium, afsnit 6, fig. 6.2.7."
+    },
+    {
+      "id": "ELMB07",
+      "seek": "Ukendt EMK Ex [V], kompensation med måletråd",
+      "given": "l [m], I [A], Rtråd [Ω], Ltråd [m]",
+      "condition": "Kompensationsmålebro med måletråd, fig. 6.2.8. Til termoelementer og andre små EMK, mV eller µV. l og Ltråd i samme enhed. I i ampere.",
+      "latex": "E_{x}=l\\cdot\\frac{I\\cdot R_{\\mathrm{tråd}}}{L_{\\mathrm{tråd}}}",
+      "steps": "Først ledningsfaldet Utråd = I·Rtråd. Spænding pr. længdeenhed er umm = Utråd/Ltråd. Så er Ex = l·umm. Ved balance trækkes der ingen strøm fra kilden.",
+      "conversion": "20,0 mA = 0,020 A. 25 mm = 0,025 m. 0,0005 V = 0,50 mV = 500 µV.",
+      "pitfall": "Eks. 6.2 i kompendiet henviser til fig. 6.1.8. Det skal være fig. 6.2.8. Bland ikke millimeter og meter i samme brøk.",
+      "example": "Eks. 6.2: Ltråd = 1,0 m, Rtråd = 1,0 Ω, I = 20,0 mA = 0,020 A og l = 25 mm = 0,025 m. Ex = 0,025 · (0,020 · 1,0 / 1,0) = 0,0005 V = 0,50 mV. Det er det samme som 25 mm · 20 µV/mm.",
+      "example_check": { "expr": "0.025*(0.02*1/1)", "expected": 0.0005 },
+      "source_locations": ["ELMB:81-93"],
+      "lookup": {
+        "group": "bridges",
+        "seek_key": "mb_Ex",
+        "given_sets": [["mb_l", "mb_I", "mb_Rtr", "mb_Ltr"]],
+        "situations": ["mb_comp_wire"]
+      },
+      "explanation": "Måletråden bruges, når EMK er så lille, at et voltmeter ville belaste kilden for meget. Det gælder termoelementer og fotoelementer. Kilde: MARTEC-kompendium, afsnit 6, fig. 6.2.8 og eks. 6.2."
+    },
+    {
+      "id": "ELMB08",
+      "seek": "Ukendt induktans Lx [H], telefonmålebro",
+      "given": "LN [H], R1 [Ω], R2 [Ω]",
+      "condition": "Telefonmålebro for en spole, fig. 6.3.1. Forsyning cirka 2–12 V ved for eksempel 800 Hz. Balance med højttaler, oscilloskop eller AC-multimeter. Du behøver ikke kende udtaget a, hvis du kun skal finde Lx.",
+      "latex": "L_{x}=L_{N}\\cdot\\frac{R_{1}}{R_{2}}",
+      "steps": "Ved balance er R1/R2 = Xx/XN, og derfor Lx/LN = R1/R2. Uden hjælpemodstand er der også en fasebetingelse: spolerne skal have samme cos φ, så Rx/RN = Xx/XN. Med hjælpemodstand R, hvor udtaget er a, er (Rx + (1 − a)·R)/(RN + a·R) = Xx/XN.",
+      "conversion": "1 mH = 0,001 H. Forholdet R1/R2 er ens, så 40 mH · 60/80 kan regnes direkte som 30 mH.",
+      "pitfall": "Ved L-broen er brøken R1/R2. Ved C-broen er den R2/R1. Ved AC skal både størrelse og fase passe, ellers bliver højttaleren aldrig helt tavs.",
+      "example": "Eks. 6.3: LN = 40,0 mH, R1 = 60 Ω og R2 = 80 Ω. Lx = 40,0 · 60/80 = 30 mH.",
+      "example_check": { "expr": "40*60/80", "expected": 30 },
+      "source_locations": ["ELMB:81-93"],
+      "lookup": {
+        "group": "bridges",
+        "seek_key": "mb_Lx",
+        "given_sets": [["mb_LN", "mb_R1", "mb_R2"]],
+        "situations": ["mb_phone_l"]
+      },
+      "explanation": "Telefonmålebroen sammenligner den ukendte spole med en normalinduktans. Reaktansen er XL = 2πfL, og f forkortes ud af forholdet. Kilde: MARTEC-kompendium, afsnit 6, fig. 6.3.1 og eks. 6.3."
+    },
+    {
+      "id": "ELMB09",
+      "seek": "Spolens modstand R [Ω], telefonmålebro",
+      "given": "Rxs [Ω], RNs [Ω], R1 [Ω], R2 [Ω]",
+      "condition": "Samme telefonmålebro som ved Lx, når spolegrenens ohmsk modstand også aflæses. Rxs er den ukendte gren, og RNs er normalspolens modstand.",
+      "latex": "R=R_{xs}\\cdot\\frac{R_{2}}{R_{1}}-R_{Ns}",
+      "steps": "R = Rxs·R2/R1 − RNs. Læg mærke til, at denne brøk er R2/R1, modsat brøken for Lx.",
+      "conversion": "Alle modstande i ohm.",
+      "pitfall": "Rxs er ikke det samme som den ukendte modstand Rx i en DC-bro. RNs skal trækkes fra, ellers bliver spolens egen modstand for stor.",
+      "example": "Eks. 6.3: Rxs = 18,0 Ω, RNs = 15,0 Ω, R1 = 60 Ω og R2 = 80 Ω. R = 18,0 · 80/60 − 15,0 = 9 Ω. RNs + R = 24 Ω.",
+      "example_check": { "expr": "18*80/60-15", "expected": 9 },
+      "source_locations": ["ELMB:81-93"],
+      "lookup": {
+        "group": "bridges",
+        "seek_key": "mb_Rs",
+        "given_sets": [["mb_Rxs", "mb_RNs", "mb_R1", "mb_R2"]],
+        "situations": ["mb_phone_l"]
+      },
+      "explanation": "Ud over induktansen giver telefonmålebroen spolens ohmske modstand. I eks. 6.3 er RNs + R = 24 Ω, og selve R er 9 Ω. Kilde: MARTEC-kompendium, afsnit 6, eks. 6.3."
+    },
+    {
+      "id": "ELMB10",
+      "seek": "Ukendt kapacitans Cx [F], telefonmålebro",
+      "given": "CN [F], R1 [Ω], R2 [Ω]",
+      "condition": "Telefonmålebro for en kondensator, fig. 6.3.3. Samme forsyning som ved spolen, cirka 2–12 V og for eksempel 800 Hz.",
+      "latex": "C_{x}=C_{N}\\cdot\\frac{R_{2}}{R_{1}}",
+      "steps": "XC er omvendt proportional med C. Derfor vender brøken: R1/R2 = XCx/XCN = CN/Cx, og Cx = CN·R2/R1.",
+      "conversion": "1 µF = 10⁻⁶ F. 1 nF = 10⁻⁹ F. Forholdet kan regnes direkte i µF eller nF.",
+      "pitfall": "Ved C-broen er brøken R2/R1. Ved L-broen er den R1/R2. Bytter du dem, får du den omvendte kapacitans.",
+      "example": "",
+      "source_locations": ["ELMB:81-93"],
+      "lookup": {
+        "group": "bridges",
+        "seek_key": "mb_Cx",
+        "given_sets": [["mb_CN", "mb_R2", "mb_R1"]],
+        "situations": ["mb_phone_c"]
+      },
+      "explanation": "Kapacitansen findes ved at sammenligne med en normalkondensator. Brøken er vendt i forhold til induktansbroen, fordi reaktansen falder, når kapacitansen stiger. Kilde: MARTEC-kompendium, afsnit 6, fig. 6.3.3."
+    },
+    {
+      "id": "ELMB11",
+      "seek": "Induktiv reaktans XL [Ω]",
+      "given": "f [Hz], L [H]",
+      "condition": "Sinusformet strøm i en ideel spole. Bruges som mellemregning i telefonmålebroen. Det er ikke en generel AC-impedans.",
+      "latex": "X_{L}=2\\pi f L",
+      "steps": "I L-broen er XL/XN = L/LN, fordi 2πf står i både tæller og nævner og forkortes ud.",
+      "conversion": "f i hertz og L i henry giver XL i ohm.",
+      "pitfall": "Formlen er reaktansen for en ideel spole. Den dækker ikke impedans, effektfaktor eller trefase.",
+      "example": "",
+      "source_locations": ["ELMB:81-93"],
+      "lookup": {
+        "group": "bridges",
+        "seek_key": "mb_XL",
+        "given_sets": [["mb_f", "mb_L"]],
+        "situations": ["mb_phone_l"]
+      },
+      "explanation": "XL = 2πfL er spolens reaktans ved frekvensen f. I selve broformlen for Lx forkortes frekvensen ud. Kilde: MARTEC-kompendium, afsnit 6, telefonmålebroen."
+    },
+    {
+      "id": "ELMB12",
+      "seek": "Kapacitiv reaktans XC [Ω]",
+      "given": "f [Hz], C [F]",
+      "condition": "Sinusformet strøm i en ideel kondensator. Bruges som mellemregning i telefonmålebroen. Det er ikke en generel AC-impedans.",
+      "latex": "X_{C}=\\frac{1}{2\\pi f C}",
+      "steps": "XC falder, når C stiger. Derfor bytter R1 og R2 plads i kapacitansbroen i forhold til induktansbroen.",
+      "conversion": "f i hertz og C i farad giver XC i ohm.",
+      "pitfall": "Formlen er reaktansen for en ideel kondensator. Den dækker ikke impedans, effektfaktor eller trefase.",
+      "example": "",
+      "source_locations": ["ELMB:81-93"],
+      "lookup": {
+        "group": "bridges",
+        "seek_key": "mb_XC",
+        "given_sets": [["mb_f", "mb_C"]],
+        "situations": ["mb_phone_c"]
+      },
+      "explanation": "XC = 1/(2πfC) er kondensatorens reaktans. Den er omvendt proportional med C, og det er derfor C-broens brøk vender. Kilde: MARTEC-kompendium, afsnit 6, telefonmålebroen."
+    },
+    {
+      "id": "ELMB13",
+      "seek": "Brogren R4 [Ω] ved balance",
+      "given": "R1 [Ω], R2 [Ω], R3 [Ω]",
+      "condition": "Firkantet bro i balance, fig. 6.2.1. Produktet af to modstående grene er lig produktet af de to andre. Placeringen skal svare til figuren.",
+      "latex": "R_{4}=\\frac{R_{2}\\cdot R_{3}}{R_{1}}",
+      "steps": "Balancebetingelsen er R1·R4 = R2·R3. Isoleres R4, fås brøken ovenfor. Er du i tvivl om placeringen, så tegn broen og brug huskereglen om modstående grene.",
+      "conversion": "Samme modstandsenhed i alle fire grene.",
+      "pitfall": "Bytter du R1 og R2, vender brøken. Tabellens brøker gælder kun for den placering, den enkelte figur viser.",
+      "example": "",
+      "source_locations": ["ELMB:81-93"],
+      "lookup": {
+        "group": "bridges",
+        "seek_key": "mb_R4",
+        "given_sets": [["mb_R1", "mb_R2", "mb_R3"]],
+        "situations": ["mb_square"]
+      },
+      "explanation": "Huskereglen for alle firkantede broer: ved balance er R1·R4 = R2·R3. Kilde: MARTEC-kompendium, afsnit 6, fig. 6.2.1."
+    },
+    {
+      "id": "ELMB14",
+      "seek": "Antal uafhængige kredse m [1]",
+      "given": "g [1], k [1]",
+      "condition": "Sammenhængende kredsløb. For broen med batteri og galvanometer er k = 4 og g = 6. Ved balance, IG = 0, er to kredse nok: a-c-d og c-b-d. Uden balance bruges tre uafhængige kredse, for eksempel med maskestrømme.",
+      "latex": "m=g-k+1",
+      "steps": "Mulige lukkede kredse i den bro er 7. De uafhængige er m = g − k + 1.",
+      "conversion": "g, k og m er antal og har ingen fysisk enhed.",
+      "pitfall": "De to tal 2 og 3 er ikke det samme. 2 kredse rækker kun, når galvanometret er i balance. Uden balance skal du bruge de 3 uafhængige kredse.",
+      "example": "Bro med batteri og G: k = 4, g = 6 og m = 6 − 4 + 1 = 3.",
+      "example_check": { "expr": "6-4+1", "expected": 3 },
+      "source_locations": ["ELMB:81-93"],
+      "lookup": {
+        "group": "bridges",
+        "seek_key": "mb_m",
+        "given_sets": [["mb_g", "mb_k"]],
+        "situations": ["mb_square"]
+      },
+      "explanation": "Antallet af uafhængige kredse er grene minus knuder plus en. For målebroen med batteri og galvanometer er det 3. Kilde: MARTEC-kompendium, afsnit 6."
+    },
+    {
+      "id": "ELMB15",
+      "seek": "Broens erstatningsmodstand ved balance [Ω]",
+      "given": "R1 [Ω], R2 [Ω], R3 [Ω], R4 [Ω]",
+      "condition": "Firkantet bro i balance set fra batteridiagonalen. De to seriegrene ligger parallelt. Resultatet er ikke Rx.",
+      "latex": "R_{\\mathrm{erst}}=\\frac{(R_{1}+R_{2})(R_{3}+R_{4})}{R_{1}+R_{2}+R_{3}+R_{4}}",
+      "steps": "Ved balance er (R1 + R2) parallelt med (R3 + R4). Produkt over sum er parallelformlen for de to seriegrene.",
+      "conversion": "Alle fire modstande i ohm giver erstatningsmodstanden i ohm.",
+      "pitfall": "Erstatningsmodstanden er ikke den ukendte Rx. Rx findes af broformlen, ikke af denne parallelforbindelse.",
+      "example": "",
+      "source_locations": ["ELMB:81-93"],
+      "lookup": {
+        "group": "bridges",
+        "seek_key": "mb_Req",
+        "given_sets": [["mb_R1", "mb_R2", "mb_R3", "mb_R4"]],
+        "situations": ["mb_square"]
+      },
+      "explanation": "Set fra batteriet er broen ved balance to seriegrene i parallel. Den værdi bruges ikke som den målte modstand. Kilde: MARTEC-kompendium, afsnit 6."
+    }
+  ]
+}

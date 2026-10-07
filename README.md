@@ -3,7 +3,7 @@
 iOS and Android app for the Formelopslag workbook at [uplo.tv](https://uplo.tv).
 The calculation engine, catalogs and water diagram are the offline build of
 [grumskull-art/Formelopslag](https://github.com/grumskull-art/Formelopslag)
-at commit `0d76f80`. Mathcad export is removed. The phone layout is in `mobile/`.
+at commit `c578231` on `develop`. Mathcad export is removed. The phone layout is in `mobile/`.
 
 ## Included
 
@@ -14,7 +14,8 @@ at commit `0d76f80`. Mathcad export is removed. The phone layout is in `mobile/`
 - Formula cards with conditions, explanation, steps, conversion, pitfalls, examples, sources, plain text and LaTeX
 - Copy link, print, light/dark/auto theme, and feedback mail
 - Notes, teaching constants and materials, and the source-scope note
-- log(p)-h diagram for water (IAPWS-IF97 regions 1, 2 and 4), including the dry-expansion cycle
+- Diagram list with three tools: log(p)-h for water (IAPWS-IF97 regions 1, 2 and 4, including the dry-expansion cycle), the ideal-gas box (p = nRT/V), and Otto/Diesel V–p and s,T charts
+- Målebroer under El Tek: Wheatstone, trådmålebro, Thomson, kompensation and the telephone bridge for L and C, from MARTEC-kompendiet afsnit 6 (s. 81–93). The cheatsheet PDF is not stored in this repo
 - Works offline after install
 
 ## Not included
@@ -27,7 +28,7 @@ Mathcad Prime is not available on iOS, so those controls are not in the app.
 
 ## Phone layout
 
-- Bottom tabs: Formler and Diagram
+- Bottom tabs: Formler and Diagrammer
 - Search and saved entries stacked for the thumb
 - Topics scroll sideways
 - One column on a phone, two columns from 900px

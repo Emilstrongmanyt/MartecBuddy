@@ -4,14 +4,14 @@
 
   function paintTabs() {
     const formulas = document.getElementById("view-formulas");
-    const diagram = document.getElementById("view-ph");
+    const diagrams = document.getElementById("view-diagrams");
     if (formulas) {
       formulas.setAttribute("aria-label", "Formler");
       formulas.innerHTML = '<span class="tab-glyph mark" aria-hidden="true">ƒ</span><span class="tab-label">Formler</span>';
     }
-    if (diagram) {
-      diagram.setAttribute("aria-label", "log(p)-h diagram for vand");
-      diagram.innerHTML = '<svg class="tab-glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 16c2.2-7 4.2-7 6.2 0s4 7 6.2 0 4-7 6.2 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="tab-label">Diagram</span>';
+    if (diagrams) {
+      diagrams.setAttribute("aria-label", "Diagrammer og simulationer");
+      diagrams.innerHTML = '<svg class="tab-glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 16c2.2-7 4.2-7 6.2 0s4 7 6.2 0 4-7 6.2 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="tab-label">Diagrammer</span>';
     }
   }
 
@@ -56,7 +56,10 @@
   if (copyHelp) copyHelp.textContent = "Hold på teksten og vælg Kopiér. På en computer kan du bruge Ctrl+C.";
 
   document.getElementById("view-formulas")?.addEventListener("click", () => window.scrollTo(0, 0));
-  document.getElementById("view-ph")?.addEventListener("click", () => window.scrollTo(0, 0));
+  document.getElementById("view-diagrams")?.addEventListener("click", () => window.scrollTo(0, 0));
+  document.querySelectorAll("[data-tool], [data-tool-back]").forEach((button) => {
+    button.addEventListener("click", () => window.scrollTo(0, 0));
+  });
   document.addEventListener("focusin", keepFieldVisible);
   window.visualViewport?.addEventListener("resize", keyboardInset);
   window.visualViewport?.addEventListener("scroll", keyboardInset);
