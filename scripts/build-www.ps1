@@ -84,12 +84,16 @@ $sourceHintNew = '${link||(source&&source.id===''ELMB''?'''' : `<small>Find file
 if (-not $html.Contains($sourceHint)) { throw "Kildehenvisningen blev ikke fundet." }
 $html = $html.Replace($sourceHint, $sourceHintNew)
 $html = $html.Replace("</body>", "<script src=`"mobile.js`" defer></script></body>")
+$mainTab = [System.IO.File]::ReadAllText((Join-Path $root "vaerktoejer\main-tab.html"), $utf8).Trim()
+$viewMarker = 'id="view-diagrams" aria-pressed="false">Diagrammer</button></nav>'
+if (-not $html.Contains($viewMarker)) { throw "View switch marker was not found." }
+$html = $html.Replace($viewMarker, 'id="view-diagrams" aria-pressed="false">Diagrammer</button>' + $mainTab + '</nav>')
 
 $copyMathcad = "Kopi" + [char]0x00E9 + "r til Mathcad"
 foreach ($needle in @($copyMathcad, "Mathcad-valg", 'id="mathcad-dialog"', "data-mathcad=", "Prime XML is compiled by Python", '"mathcad":')) {
     if ($html.Contains($needle)) { throw "Bygget side indeholder stadig: $needle" }
 }
-foreach ($needle in @("Martec Buddy", 'id="global-search"', 'id="view-formulas"', 'id="view-diagrams"', 'id="diagram-list"', 'id="gas"', 'id="motor"', 'id="gas-canvas"', 'id="motor-pv"', 'id="ph-svg"', 'id="saved-toggle"', "ELMB01", "mobile.css", "mobile.js")) {
+foreach ($needle in @("Martec Buddy", 'id="global-search"', 'id="view-formulas"', 'id="view-diagrams"', 'id="view-tools"', 'href="vaerktoejer/index.html"', 'id="diagram-list"', 'id="gas"', 'id="motor"', 'id="gas-canvas"', 'id="motor-pv"', 'id="ph-svg"', 'id="saved-toggle"', "ELMB01", "mobile.css", "mobile.js")) {
     if (-not $html.Contains($needle)) { throw "Bygget side mangler: $needle" }
 }
 
@@ -99,5 +103,48 @@ Copy-Item -Force (Join-Path $root "mobile\mobile.css") (Join-Path $www "mobile.c
 Copy-Item -Force (Join-Path $root "mobile\mobile.js") (Join-Path $www "mobile.js")
 Copy-Item -Force (Join-Path $root "mobile\manifest.webmanifest") (Join-Path $www "manifest.webmanifest")
 Copy-Item -Force (Join-Path $root "mobile\icon.svg") (Join-Path $www "icon.svg")
+
+$toolsSrc = Join-Path $root "vaerktoejer"
+$toolsOut = Join-Path $www "vaerktoejer"
+New-Item -ItemType Directory -Force -Path $toolsOut | Out-Null
+$tools = [System.IO.File]::ReadAllText((Join-Path $toolsSrc "index.html"), $utf8)
+$toolsTitle = "<title>Martec Buddy " + [char]0x00B7 + " V" + [char]0x00E6 + "rkt" + [char]0x00F8 + "jer</title>"
+if (-not $tools.Contains("<title>VektorLab | AC-beregninger</title>")) { throw "Tools title was not found." }
+$tools = $tools.Replace("<title>VektorLab | AC-beregninger</title>", $toolsTitle)
+if (-not $tools.Contains("<strong>VektorLab</strong>")) { throw "Tools brand was not found." }
+$tools = $tools.Replace("<strong>VektorLab</strong>", "<strong>Martec Buddy</strong>")
+$tools = $tools.Replace('aria-label="VektorLab forside"', 'aria-label="Martec Buddy forside"')
+$tools = $tools.Replace(
+    '<meta name="viewport" content="width=device-width, initial-scale=1">',
+    '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">')
+if (-not $tools.Contains("<body>")) { throw "Tools body was not found." }
+$tools = $tools.Replace("<body>", '<body class="martec-tools">')
+$styleLink = '<link rel="stylesheet" href="styles.css?v=iron-core-coil-2">'
+if (-not $tools.Contains($styleLink)) { throw "Tools stylesheet was not found." }
+$tools = $tools.Replace($styleLink, $styleLink + '<link rel="stylesheet" href="phone.css">')
+$topicLabel = '<p class="nav-label">Emner</p>'
+if (-not $tools.Contains($topicLabel)) { throw "Tools topic label was not found." }
+$sidebarLinks = [System.IO.File]::ReadAllText((Join-Path $toolsSrc "sidebar-links.html"), $utf8).Trim()
+$tools = $tools.Replace($topicLabel, $sidebarLinks + $topicLabel)
+$scriptTag = '<script src="app.js?v=iron-core-coil-2"></script>'
+if (-not $tools.Contains($scriptTag)) { throw "Tools script was not found." }
+$tabs = [System.IO.File]::ReadAllText((Join-Path $toolsSrc "tabs.html"), $utf8).Trim()
+$tools = $tools.Replace($scriptTag, $scriptTag + $tabs)
+foreach ($needle in @('id="acP"', 'id="serie"', 'id="trefaset"', 'id="ellove"', 'id="menuButton"', "phone.css", "phone.js", "buddy-tabs", "buddy-links", "Martec Buddy", "viewport-fit=cover")) {
+    if (-not $tools.Contains($needle)) { throw "Tools page is missing: $needle" }
+}
+if ($tools.Contains("<strong>VektorLab</strong>")) { throw "Tools brand was not replaced." }
+[System.IO.File]::WriteAllText((Join-Path $toolsOut "index.html"), $tools, $utf8)
+Copy-Item -Force (Join-Path $toolsSrc "styles.css") (Join-Path $toolsOut "styles.css")
+Copy-Item -Force (Join-Path $toolsSrc "app.js") (Join-Path $toolsOut "app.js")
+Copy-Item -Force (Join-Path $toolsSrc "phone.css") (Join-Path $toolsOut "phone.css")
+Copy-Item -Force (Join-Path $toolsSrc "phone.js") (Join-Path $toolsOut "phone.js")
+$srcJs = Get-FileHash -Algorithm SHA256 (Join-Path $toolsSrc "app.js")
+$outJs = Get-FileHash -Algorithm SHA256 (Join-Path $toolsOut "app.js")
+$srcCss = Get-FileHash -Algorithm SHA256 (Join-Path $toolsSrc "styles.css")
+$outCss = Get-FileHash -Algorithm SHA256 (Join-Path $toolsOut "styles.css")
+if ($srcJs.Hash -ne $outJs.Hash -or $srcCss.Hash -ne $outCss.Hash) { throw "Tools calculation files were modified." }
+
 $bytes = (Get-Item -LiteralPath (Join-Path $www "index.html")).Length
-Write-Host "Martec Buddy www er bygget ($bytes bytes)."
+$toolBytes = (Get-Item -LiteralPath (Join-Path $toolsOut "index.html")).Length
+Write-Host "Martec Buddy www er bygget ($bytes bytes, tools $toolBytes bytes)."

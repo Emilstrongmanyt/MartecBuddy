@@ -1,0 +1,186 @@
+/* Phone chrome for the AC tools page. Calculation styles stay in styles.css. */
+:root {
+  --buddy-tab: calc(76px + env(safe-area-inset-bottom));
+  --keyboard-inset: 0px;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body.martec-tools {
+  touch-action: manipulation;
+}
+
+body.martec-tools .sidebar {
+  padding-top: calc(25px + env(safe-area-inset-top));
+  overflow-y: auto;
+}
+
+body.martec-tools .topbar {
+  height: calc(86px + env(safe-area-inset-top));
+  padding-top: env(safe-area-inset-top);
+  padding-left: max(22px, env(safe-area-inset-left));
+  padding-right: max(22px, env(safe-area-inset-right));
+}
+
+body.martec-tools .content {
+  padding-bottom: calc(28px + var(--buddy-tab));
+}
+
+body.martec-tools input:not([type="checkbox"]):not([type="radio"]),
+body.martec-tools select,
+body.martec-tools textarea {
+  font-size: 16px !important;
+  min-height: 44px;
+}
+
+body.martec-tools .component-row select,
+body.martec-tools .component-row input,
+body.martec-tools .triangle-value-inputs input,
+body.martec-tools .impedance-phase-cell input,
+body.martec-tools .impedance-phase-connection select,
+body.martec-tools .symmetric-card input {
+  height: 44px;
+}
+
+body.martec-tools .menu-button,
+body.martec-tools .nav-item,
+body.martec-tools .ghost-button {
+  min-height: 44px;
+}
+
+body.martec-tools .buddy-links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 0 8px 16px;
+}
+
+body.martec-tools .buddy-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 8px;
+  border: 1px solid #2a3944;
+  border-radius: 9px;
+  background: #111c24;
+  color: #dce5eb;
+  text-decoration: none;
+  font: 600 12px/1.2 Manrope, system-ui, sans-serif;
+}
+
+body.light-theme.martec-tools .buddy-links a {
+  background: #fff;
+  color: #102630;
+  border-color: var(--line);
+}
+
+body.martec-tools .buddy-tabs {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 55;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  margin: 0;
+  padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
+  background: var(--panel);
+  border-top: 1px solid var(--line);
+}
+
+body.martec-tools .buddy-tabs a {
+  box-sizing: border-box;
+  min-height: 52px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  padding: 6px 4px;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  background: transparent;
+  color: var(--muted);
+  text-decoration: none;
+  font: 600 11px/1.2 Manrope, system-ui, sans-serif;
+}
+
+body.martec-tools .buddy-tabs a[aria-current="page"] {
+  color: var(--cyan);
+  border-color: #2a6670;
+  background: #132830;
+}
+
+body.light-theme.martec-tools .buddy-tabs a[aria-current="page"] {
+  background: #e7f4f8;
+  border-color: var(--cyan);
+}
+
+body.martec-tools .tab-glyph {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+body.martec-tools .tab-glyph.mark {
+  width: auto;
+  height: auto;
+  font: italic 20px/1 Georgia, serif;
+}
+
+body.martec-tools .tab-label {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body.martec-tools.menu-open:after {
+  z-index: 60;
+}
+
+html.keyboard-open body.martec-tools .buddy-tabs {
+  transform: translateY(120%);
+}
+
+html.keyboard-open body.martec-tools .content {
+  padding-bottom: calc(28px + var(--keyboard-inset));
+}
+
+@media (min-width: 761px) and (max-width: 1050px) {
+  body.martec-tools .buddy-tabs {
+    left: 210px;
+  }
+}
+
+@media (min-width: 1051px) {
+  body.martec-tools .buddy-tabs {
+    left: 254px;
+  }
+}
+
+@media (max-width: 760px) {
+  body.martec-tools .sidebar {
+    z-index: 70;
+    overflow-y: auto;
+    transition: transform .25s;
+  }
+
+  body.martec-tools .topbar {
+    height: calc(75px + env(safe-area-inset-top));
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+  }
+}
+
+@media print {
+  body.martec-tools .buddy-tabs,
+  body.martec-tools .buddy-links {
+    display: none !important;
+  }
+}

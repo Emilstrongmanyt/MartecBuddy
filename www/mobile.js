@@ -13,6 +13,11 @@
       diagrams.setAttribute("aria-label", "Diagrammer og simulationer");
       diagrams.innerHTML = '<svg class="tab-glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 16c2.2-7 4.2-7 6.2 0s4 7 6.2 0 4-7 6.2 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="tab-label">Diagrammer</span>';
     }
+    const tools = document.getElementById("view-tools");
+    if (tools) {
+      tools.setAttribute("aria-label", "Værktøjer");
+      tools.innerHTML = '<svg class="tab-glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l8 14H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span class="tab-label">Værktøjer</span>';
+    }
   }
 
   function shortenTheme() {

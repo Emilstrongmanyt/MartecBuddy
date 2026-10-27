@@ -16,6 +16,7 @@ at commit `c578231` on `develop`. Mathcad export is removed. The phone layout is
 - Notes, teaching constants and materials, and the source-scope note
 - Diagram list with three tools: log(p)-h for water (IAPWS-IF97 regions 1, 2 and 4, including the dry-expansion cycle), the ideal-gas box (p = nRT/V), and Otto/Diesel V–p and s,T charts
 - Målebroer under El Tek: Wheatstone, trådmålebro, Thomson, kompensation and the telephone bridge for L and C, from MARTEC-kompendiet afsnit 6 (s. 81–93). The cheatsheet PDF is not stored in this repo
+- AC tools from [marstatec/bm4-vaerktoejer](https://github.com/marstatec/bm4-vaerktoejer) at commit `d1fd215`: vekselstrøm, trekanter, 1-faset serie, spoler med jernkerne, 1-faset parallel, effekt, 3-faset, 3-faset belastning, fasekompensering, stjerne/trekant, transformation, and el-love. The upstream page is stored in `vaerktoejer/` and copied to `www/vaerktoejer/` by the build. Its calculations are not rewritten
 - Works offline after install
 
 ## Not included
@@ -28,7 +29,7 @@ Mathcad Prime is not available on iOS, so those controls are not in the app.
 
 ## Phone layout
 
-- Bottom tabs: Formler and Diagrammer
+- Bottom tabs: Formler, Diagrammer, and Værktøjer
 - Search and saved entries stacked for the thumb
 - Topics scroll sideways
 - One column on a phone, two columns from 900px
@@ -44,8 +45,9 @@ From this folder:
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts\build-www.ps1
 ```
 
-The script reads `vendor/Formelopslag/docs/index.html`, drops Mathcad, and writes `www/`.
+The script reads `vendor/Formelopslag/docs/index.html`, drops Mathcad, copies the AC tools page, and writes `www/`.
 If the vendor file is missing it clones that one file from GitHub.
+Phone-only changes for the AC tools belong in `vaerktoejer/phone.css` and `vaerktoejer/phone.js`. Do not edit `vaerktoejer/app.js` or `vaerktoejer/styles.css`.
 
 Open `www/index.html` in a phone-sized browser window to review the layout.
 A store build uses the same `www` folder.
